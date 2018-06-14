@@ -1,0 +1,8 @@
+<ngb-accordion *ngFor="let lesson of lessons" #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-panel title="{{lesson.title}}">
+
+    <ng-template ngbPanelContent>
+      <app-widget-list [widgets]="lesson.widgets"></app-widget-list>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
