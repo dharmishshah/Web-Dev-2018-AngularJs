@@ -12,8 +12,16 @@ export class ProfileComponent implements OnInit {
   constructor(private service: UserServiceClient) { }
 
   user: User = new User();
+
   update(user: User) {
-    console.log(user);
+    this
+      .service
+      .updateProfile(user)
+      .then(() => {
+        this.service
+          .profile()
+          .then(user => this.user = user);
+      });
   }
 
   ngOnInit() {
@@ -24,5 +32,7 @@ export class ProfileComponent implements OnInit {
     //   .findUserById('5b1ec6c2d06a450655254f14')
     //   .then(user => this.user = user);
   }
+
+
 
 }
