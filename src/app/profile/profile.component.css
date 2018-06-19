@@ -1,0 +1,19 @@
+.profileHeader .btn{
+  margin-left: 10px;
+  margin-top : 5px;
+}
+
+.profileContainer{
+  padding-top: 30px;
+  padding-left:80px;
+}
+
+
+.profileContainer a {
+  margin-left: 10px;
+  margin-top : 5px;
+}
+
+.profileContainer .profileItem {
+  margin-left: 5px;
+}

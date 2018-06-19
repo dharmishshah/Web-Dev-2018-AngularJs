@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../models/user.model.client";
 import {UserServiceClient} from "../services/user.service.client";
+import {Router} from "@angular/router";
+import {Course} from "../models/coruse.model.client";
+import {SectionServiceClient} from "../services/section.service.client";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-profile',
@@ -9,9 +13,14 @@ import {UserServiceClient} from "../services/user.service.client";
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private service: UserServiceClient) { }
+  constructor(private service: UserServiceClient,
+              private router: Router,
+              private sectionService:SectionServiceClient,
+              private cookieService : CookieService ) { }
 
   user: User = new User();
+  sections = [];
+  courses = [];
 
   update(user: User) {
     this
@@ -24,13 +33,19 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+
+
   ngOnInit() {
     this.service
       .profile()
       .then(user => this.user = user);
-    // this.service
-    //   .findUserById('5b1ec6c2d06a450655254f14')
-    //   .then(user => this.user = user);
+
+    this.sectionService.findSectionsForStudent()
+      .then(sections => {
+        this.courses = JSON.parse(localStorage.getItem("courses"));
+        this.sections = sections
+      });
+
   }
 
 

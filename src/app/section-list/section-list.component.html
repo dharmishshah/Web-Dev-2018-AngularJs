@@ -1,4 +1,5 @@
-<div class="container-fluid">
+
+<div class="container-fluid sectionContainer">
   <h1>Sections for course: {{courseId}}</h1>
   <input [(ngModel)]="sectionName"
          placeholder="Section Name"
@@ -11,11 +12,86 @@
   </button>
 
   <ul class="list-group">
+
     <li *ngFor="let section of sections" class="list-group-item">
-      {{section.name}} {{section.seats}}
-      <button (click)="enroll(section)"
-              class="float-right btn btn-primary">Enroll</button>
+      <div>
+        <button (click)="enroll(section)"
+                class="float-right btn btn-primary">Enroll</button>
+      </div>
+      <div>
+        <button (click)="updateSectionModal(updateSection, section)"
+                class="float-right btn btn-danger">Delete</button>
+        <button (click)="deleteSectionModal(deleteSection, section)"
+                class="float-right btn btn-info">Update</button>
+
+      </div>
+      <p><b> Name</b>  : {{section.name}} </p>
+      <p><b>Maximum Seats</b>  : {{section.seats}}</p>
+
+      <ngb-accordion #acc="ngbAccordion" >
+        <ngb-panel title="View Students">
+          <ng-template ngbPanelContent>
+            <ul>
+              <li *ngFor="let student of section.students" class="list-group-item">
+                {{student.username}}
+              </li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+
     </li>
   </ul>
+
+
+  <ng-template #updateSection let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Update Section</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>Section Name</label>
+          <input [(ngModel)]="updatedSectionName" name="sectionName"
+                 placeholder="Section Name"
+                 class="form-control">
+          <label>Maximum Seats</label>
+          <input [(ngModel)]="updatedSeats" name="seats"
+                 placeholder="Seats available"
+                 class="form-control">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="updateSection()">Save</button>
+    </div>
+  </ng-template>
+
+
+  <ng-template #deleteSection let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Delete Section</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <label hidden [(ngModel)]="deleteSectionId" name="deleteSectionId"></label>
+        <div class="form-group">
+          <label> Are you sure you want to delete this section? </label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="deleteSection()">Yes</button>
+      <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">No</button>
+    </div>
+  </ng-template>
+
+
 
 </div>

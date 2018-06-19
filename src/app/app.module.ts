@@ -26,6 +26,8 @@ import { TopicTabsComponent } from './topic-tabs/topic-tabs.component';
 import {TopicServiceClient} from "./services/topic.service.client";
 import { SectionListComponent} from "./section-list/section-list.component"
 import {SectionServiceClient} from "./services/section.service.client";
+import { CookieService } from 'ngx-cookie-service';
+import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -48,9 +50,11 @@ import {SectionServiceClient} from "./services/section.service.client";
     BrowserModule,
     FormsModule,
     routing,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    NgbAccordionModule
   ],
   providers: [
+    CookieService,
     CourseNavigatorServiceClient,
     CourseServiceClient,
     ModuleServiceClient,

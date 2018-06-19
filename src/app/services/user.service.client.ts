@@ -20,7 +20,9 @@ export class UserServiceClient {
       username: updatedUser.username,
       firstName: updatedUser.firstName,
       lastName : updatedUser.lastName,
-      email : updatedUser.emailId
+      email : updatedUser.email,
+      address : updatedUser.address,
+      phoneNumber : updatedUser.phoneNumber
     };
     return fetch(this.API_URL + '/api/profile', {
       body: JSON.stringify(user),
@@ -38,7 +40,8 @@ export class UserServiceClient {
       password: password
     };
     return fetch(this.API_URL + '/api/user/findUserByCredentials', {
-      body: JSON.stringify(user), // include, same-origin, *omit
+      body: JSON.stringify(user),
+      credentials: 'include',// include, same-origin, *omit
       method: 'post',
       headers: {
         'content-type': 'application/json'
@@ -48,13 +51,18 @@ export class UserServiceClient {
 
   setSession(user){
     return fetch(this.API_URL + '/api/session/set/currentStudentId/' + user._id
-    ).then(response => response.json()).then();
+    ).then(response => response.json())
+  }
+
+  logout(){
+    return fetch(this.API_URL + '/api/session/logout').then(response => response.json())
   }
 
   createUser(username, password) {
     const user = {
       username: username,
-      password: password
+      password: password,
+      role :'STUDENT'
     };
     return fetch(this.API_URL + '/api/user', {
       body: JSON.stringify(user),

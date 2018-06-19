@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Route, Router} from "@angular/router";
 import {UserServiceClient} from "../services/user.service.client";
 import {s} from "@angular/core/src/render3";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,11 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private router: Router,
-              private service: UserServiceClient) { }
+              private service: UserServiceClient,
+              private cookieService : CookieService){
+
+    this.logout = this.logout
+  }
 
 
   login(username, password) {
@@ -26,6 +31,8 @@ export class LoginComponent implements OnInit {
       .then((response) => {
         var res = response;
         if(res !== 'User not found'){
+          this.cookieService.set('username',res.username);
+          this.cookieService.set('role',res.role);
           this.service.setSession(res);
           this.router.navigate(['profile'])
         }else{
@@ -35,7 +42,13 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  logout() {
+    this.service
+      .logout()
+  }
+
   ngOnInit() {
+    this.logout();
   }
 
 }
