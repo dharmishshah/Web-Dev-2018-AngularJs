@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
   sections = [];
   courses = [];
+  userName = this.cookieService.get('username');
+  userRole = this.cookieService.get('role');
 
   update(user: User) {
     this
@@ -34,8 +36,16 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  unEnroll(section) {
+    // alert(section._id);
+    this.sectionService
+      .unEnrollStudentInSection(section.section._id, section._id)
+      .then(() => {
+        this.loadProfile()
+      });
+  }
 
-  ngOnInit() {
+  loadProfile(){
     this.service
       .profile()
       .then(user => this.user = user);
@@ -45,6 +55,10 @@ export class ProfileComponent implements OnInit {
         this.courses = JSON.parse(localStorage.getItem("courses"));
         this.sections = sections
       });
+  }
+
+  ngOnInit() {
+    this.loadProfile()
 
   }
 

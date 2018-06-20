@@ -1,41 +1,63 @@
+<div class="container-fluid sectionHeaderContainer">
+  <a routerLink="/home" class="float-right btn btn-success">Home</a>
+</div>
 
 <div class="container-fluid sectionContainer">
-  <h1>Sections for course: {{courseId}}</h1>
-  <input [(ngModel)]="sectionName"
-         placeholder="Section Name"
-         class="form-control">
-  <input [(ngModel)]="seats"
-         placeholder="Seats available"
-         class="form-control">
-  <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
-    Add Section
-  </button>
+  <h1>Sections for course: {{courseName}} </h1>
+  <div *ngIf="userRole == 'ADMIN'">
+    <input [(ngModel)]="sectionName"
+           placeholder="Section Name"
+           class="form-control">
+    <input [(ngModel)]="seats"
+           placeholder="Seats available"
+           class="form-control">
+    <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
+      Add Section
+    </button>
+  </div>
 
   <ul class="list-group">
 
     <li *ngFor="let section of sections" class="list-group-item">
-      <div>
+      <div *ngIf="userRole == 'STUDENT'">
         <button (click)="enroll(section)"
                 class="float-right btn btn-primary">Enroll</button>
       </div>
-      <div>
+      <div *ngIf="userRole == 'ADMIN'">
         <button (click)="updateSectionModal(updateSection, section)"
-                class="float-right btn btn-danger">Delete</button>
-        <button (click)="deleteSectionModal(deleteSection, section)"
                 class="float-right btn btn-info">Update</button>
+        <button (click)="deleteSectionModal(deleteSection, section)"
+                class="float-right btn btn-danger">Delete</button>
 
       </div>
       <p><b> Name</b>  : {{section.name}} </p>
-      <p><b>Maximum Seats</b>  : {{section.seats}}</p>
+      <p><b> Maximum Seats</b>  : {{section.seats}}</p>
+      <p><b> Available Seats</b>  : {{section.availableSeats}}</p>
 
-      <ngb-accordion #acc="ngbAccordion" >
+      <ngb-accordion *ngIf="userRole == 'ADMIN'" #acc="ngbAccordion" >
         <ngb-panel title="View Students">
           <ng-template ngbPanelContent>
-            <ul>
-              <li *ngFor="let student of section.students" class="list-group-item">
-                {{student.username}}
-              </li>
-            </ul>
+
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Username</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Grade</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of section.students" >
+                      <td>{{student.username}}</td>
+                      <td>{{student.firstName}}</td>
+                      <td>{{student.lastName}}</td>
+                      <td>{{student.email}}</td>
+                      <td>A</td>
+                </tr>
+              </tbody>
+            </table>
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
@@ -54,6 +76,7 @@
     <div class="modal-body">
       <form>
         <div class="form-group">
+          <label hidden [(ngModel)]="updateSectionId" name="updateSectionId"></label>
           <label>Section Name</label>
           <input [(ngModel)]="updatedSectionName" name="sectionName"
                  placeholder="Section Name"
@@ -66,7 +89,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="updateSection()">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('updateSection')">Save</button>
     </div>
   </ng-template>
 
@@ -87,7 +110,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="deleteSection()">Yes</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('deleteSection')">Yes</button>
       <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">No</button>
     </div>
   </ng-template>

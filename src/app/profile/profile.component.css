@@ -17,3 +17,14 @@
 .profileContainer .profileItem {
   margin-left: 5px;
 }
+
+.profileContainer .unenroll {
+  color : white;
+}
+
+.profileContainer .profileItem input{
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}

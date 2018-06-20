@@ -1,4 +1,9 @@
-<div class="container-fluid">
+<div class="container-fluid registerContainer">
+  <a routerLink="/login" class="float-right btn btn-success">Login</a>
+  <a routerLink="/home" class="float-right btn btn-success">Home</a>
+</div>
+
+<div class="container-fluid registerForm">
   <h1>Register</h1>
 
   <input [(ngModel)]="username"
@@ -15,7 +20,14 @@
     Register
   </button>
 
-  <a routerLink="/login">Login</a>
-  <a routerLink="/home">Home</a>
+  <div *ngIf="isUsernameError" class="customError alert alert-danger">
+    <strong>Error!</strong> Username already exists.
+  </div>
+
+  <div *ngIf="isPasswordError" class="customError alert alert-danger">
+    <strong>Error!</strong> Passwords do not match.
+  </div>
+
+
 
 </div>

@@ -1,4 +1,9 @@
-<div class="container-fluid">
+<div class="container-fluid loginContainer">
+  <a routerLink="/home" class="float-right btn btn-success">Home</a>
+  <a routerLink="/register" class="float-right btn btn-success">Register</a>
+</div>
+
+<div class="container-fluid loginForm">
   <h1>Login</h1>
 
   <input [(ngModel)]="username"
@@ -12,8 +17,10 @@
     Login
   </button>
 
-  <label [ngModel]="error">{{error}}</label>
 
-  <a routerLink="/register">Register</a>
-  <a routerLink="/home">Home</a>
+  <div *ngIf="isError" class="customError alert alert-danger">
+    <strong>Error!</strong> Invalid Credentials.
+  </div>
+
+
 </div>

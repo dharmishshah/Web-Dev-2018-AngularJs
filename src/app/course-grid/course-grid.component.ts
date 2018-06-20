@@ -3,6 +3,7 @@ import {CourseServiceClient} from "../services/course.service.client";
 import {Course} from "../models/coruse.model.client";
 import {CookieService} from "ngx-cookie-service";
 import {SectionServiceClient} from "../services/section.service.client";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-course-grid',
@@ -13,7 +14,8 @@ export class CourseGridComponent implements OnInit {
 
   constructor(private service: CourseServiceClient,
               private cookieService : CookieService,
-              private sectionService :SectionServiceClient) {
+              private sectionService :SectionServiceClient,
+              private route: ActivatedRoute) {
 
     this.findAllCourses()
 
@@ -22,6 +24,8 @@ export class CourseGridComponent implements OnInit {
   courses: Course[] = [];
   sections =[]
   enrolledCourses = [];
+  userName = this.cookieService.get('username');
+  userRole = this.cookieService.get('role');
 
 
   ngOnInit() {
@@ -46,6 +50,7 @@ export class CourseGridComponent implements OnInit {
         this.sections.map((section) => {
           this.enrolledCourses.push(section.section.courseId)
         })
+        localStorage.setItem('enrolledCourses', JSON.stringify(this.enrolledCourses));
 
       })
   }
@@ -57,6 +62,8 @@ export class CourseGridComponent implements OnInit {
       .unEnrollStudentInSection(section.section._id, section._id)
       .then(() => {
         this.findSectionsForStudent()
+        this.findAllCourses()
+        window.location.reload()
       });
   }
 

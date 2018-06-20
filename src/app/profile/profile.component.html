@@ -5,8 +5,8 @@
 <br>
 <div class="container-fluid profileContainer">
 
-    <div class="row">
-      <div class="col-sm-6">
+    <div *ngIf = "userRole == 'ADMIN'" class="row">
+      <div class="col-md-12">
         <div class="list-group-item profileItem">
           <h1>Profile</h1>
 
@@ -34,30 +34,64 @@
           </button>
         </div>
       </div>
+  </div>
 
-      <div class="col-sm-6 ">
-        <div class="list-group-item profileItem">
-          <h1>My Courses</h1>
 
-          <div *ngFor="let section of sections" class="col-sm-12">
-            <div class="list-group">
-              <div class="list-group-item">
-                <a routerLink="/course/{{section.section.courseId}}">
-                  <div *ngFor="let course of courses">
-                    <div class ="customRedButton" *ngIf = "section.section.courseId == course.id" >
-                      <h5 class="card-title">{{course.title}}</h5>
-                      <a (click)="unEnroll(section)"
-                         class=" float-right btn btn-danger">Unenroll</a>
-                    </div>
+  <div *ngIf = "userRole == 'STUDENT'" class="row">
+    <div class="col-sm-6">
+      <div class="list-group-item profileItem">
+        <h1>Profile</h1>
+
+        <input [(ngModel)]="user.username"
+               placeholder="username"
+               class="form-control"/>
+        <input [(ngModel)]="user.firstName"
+               placeholder="first name"
+               class="form-control"/>
+        <input [(ngModel)]="user.lastName"
+               placeholder="lastName"
+               class="form-control"/>
+        <input [(ngModel)]="user.email"
+               placeholder="email"
+               class="form-control"/>
+        <input [(ngModel)]="user.address"
+               placeholder="address"
+               class="form-control"/>
+        <input [(ngModel)]="user.phoneNumber"
+               placeholder="phoneNumber"
+               class="form-control"/>
+        <button (click)="update(user)"
+                class="btn btn-primary btn-block">
+          Update
+        </button>
+      </div>
+    </div>
+
+    <div class="col-sm-6 ">
+      <div class="list-group-item profileItem">
+        <h1>My Courses</h1>
+
+        <div *ngFor="let section of sections" class="col-sm-12">
+          <div class="list-group">
+            <div class="list-group-item">
+              <a routerLink="/course/{{section.section.courseId}}">
+                <div *ngFor="let course of courses">
+                  <div class ="customRedButton" *ngIf = "section.section.courseId == course.id" >
+                    <h5 class="card-title">{{course.title}}</h5>
                   </div>
-                </a>
-                <p class="card-text"> Section: {{section.section.name}}</p>
-                <p class="card-text">Available seats: {{section.section.seats}}</p>
-              </div>
+                </div>
+              </a>
+              <a (click)="unEnroll(section)"
+                 class="unenroll float-right btn btn-danger">Unenroll</a>
+
+
+              <p class="card-text"> Section: {{section.section.name}}</p>
+              <p class="card-text">Available seats: {{section.section.seats}}</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </div>
 
 

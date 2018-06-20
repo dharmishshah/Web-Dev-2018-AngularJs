@@ -1,6 +1,7 @@
 export class UserServiceClient {
 
    API_URL = 'http://localhost:4000';
+  //API_URL = 'https://webdev-nodejs-2018.herokuapp.com'
 
   findUserById(userId) {
     return fetch(this.API_URL + '/api/user/' + userId)
@@ -49,6 +50,17 @@ export class UserServiceClient {
     }).then(response => response.json());
   }
 
+  findUserByUsername(username){
+
+    return fetch(this.API_URL + '/api/user/findUserByUsername/' + username, {
+      credentials: 'include',// include, same-origin, *omit
+      method: 'get',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json());
+  }
+
   setSession(user){
     return fetch(this.API_URL + '/api/session/set/currentStudentId/' + user._id
     ).then(response => response.json())
@@ -71,6 +83,6 @@ export class UserServiceClient {
       headers: {
         'content-type': 'application/json'
       }
-    });
+    }).then(response => response.json());
   }
 }

@@ -3,8 +3,15 @@
     White Board
   </h1>
 
-  <a routerLink="/login" class="btn btn-success">Login</a>
-  <a routerLink="/register" class="btn btn-success">Register</a>
+<div *ngIf="userName">
+  <a routerLink="/login" class="float-right btn btn-success">Log out</a>
+  <a routerLink="/home" class="float-right btn btn-success">Home</a>
+</div>
+
+  <div *ngIf="!userName">
+    <a routerLink="/login" class="float-right btn btn-success">Login</a>
+    <a routerLink="/register" class="float-right btn btn-success">Register</a>
+  </div>
 
   <app-course-grid></app-course-grid>
 </div>

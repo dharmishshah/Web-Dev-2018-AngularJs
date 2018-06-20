@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   username;
   password;
-  error: string = "no error";
+  isError = false;
 
 
   constructor(private router: Router,
@@ -36,15 +36,16 @@ export class LoginComponent implements OnInit {
           this.service.setSession(res);
           this.router.navigate(['profile'])
         }else{
-          this.error = 'Invalid Credentials';
+          this.isError = true;
         }
 
       });
   }
 
   logout() {
-    this.service
-      .logout()
+    this.service.logout()
+    this.cookieService.delete('username')
+    this.cookieService.delete('role')
   }
 
   ngOnInit() {

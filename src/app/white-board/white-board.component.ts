@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-white-board',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WhiteBoardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService: CookieService) {
+
+
+
+  }
+
+  userRole = this.cookieService.get('role');
+  userName = this.cookieService.get('username');
 
   ngOnInit() {
   }
