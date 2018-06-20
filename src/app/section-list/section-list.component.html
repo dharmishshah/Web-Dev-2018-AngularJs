@@ -5,15 +5,23 @@
 <div class="container-fluid sectionContainer">
   <h1>Sections for course: {{courseName}} </h1>
   <div *ngIf="userRole == 'ADMIN'">
-    <input [(ngModel)]="sectionName"
-           placeholder="Section Name"
-           class="form-control">
-    <input [(ngModel)]="seats"
-           placeholder="Seats available"
-           class="form-control">
-    <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
-      Add Section
-    </button>
+    <div class="row addSection">
+      <div class="col-sm-5">
+        <input [(ngModel)]="sectionName"
+               placeholder="Section Name"
+               class="form-control">
+      </div>
+      <div class="col-sm-5">
+        <input [(ngModel)]="seats"
+               placeholder="Seats available"
+               class="form-control">
+      </div>
+      <div class="col-sm-2">
+        <button (click)="createSection(sectionName, seats)" class="btn btn-success btn-block">
+          Add Section
+        </button>
+      </div>
+    </div>
   </div>
 
   <ul class="list-group">

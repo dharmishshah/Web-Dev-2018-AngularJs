@@ -1,12 +1,9 @@
+import {IP_ADDRESS_NODE, IP_ADDRESS_SPRING} from "../constants";
+
 export class SectionServiceClient {
 
-  SECTION_URL = 'http://localhost:4000/api/course/COURSEID/section';
-  API_URL = 'http://localhost:4000'
-
-  //SECTION_URL = 'https://webdev-nodejs-2018.herokuapp.com/api/course/COURSEID/section';
-  //API_URL = 'https://webdev-nodejs-2018.herokuapp.com'
-
-
+  SECTION_URL = IP_ADDRESS_NODE +  '/api/course/COURSEID/section';
+  API_URL = IP_ADDRESS_NODE
 
   findSectionsForStudent() {
     const url = this.API_URL + '/api/student/section';

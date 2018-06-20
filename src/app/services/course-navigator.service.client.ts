@@ -1,6 +1,8 @@
-export class CourseNavigatorServiceClient {
-  IP_ADDRESS = 'http://localhost:8080'
+import {IP_ADDRESS_SPRING} from "../constants";
 
+export class CourseNavigatorServiceClient {
+
+  IP_ADDRESS = IP_ADDRESS_SPRING
   findAllCourses() {
     return fetch(this.IP_ADDRESS + '/api/course')
       .then(response => response.json());

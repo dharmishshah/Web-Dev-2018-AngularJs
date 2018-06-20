@@ -1,5 +1,9 @@
+import {IP_ADDRESS_SPRING} from "../constants";
+
 export class LessonServiceClient {
-  TOPIC_URL = 'http://localhost:8080/api/lesson';
+
+  TOPIC_URL = IP_ADDRESS_SPRING
+
   findLessonsForTopic(topicId) {
     return fetch(this.TOPIC_URL + '/findAllLessonsByTopicId?topicId=' + topicId)
       .then(response => response.json());

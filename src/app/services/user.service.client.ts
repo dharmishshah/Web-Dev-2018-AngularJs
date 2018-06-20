@@ -1,7 +1,8 @@
-export class UserServiceClient {
+import {IP_ADDRESS_NODE} from "../constants";
 
-   API_URL = 'http://localhost:4000';
-  //API_URL = 'https://webdev-nodejs-2018.herokuapp.com'
+export class UserServiceClient {
+  API_URL = IP_ADDRESS_NODE
+
 
   findUserById(userId) {
     return fetch(this.API_URL + '/api/user/' + userId)
