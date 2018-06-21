@@ -14,10 +14,10 @@
         <input [(ngModel)]="username" name="username"
                placeholder="username"
                class="form-control"/>
-        <input [(ngModel)]="password" name="password"
+        <input [(ngModel)]="password" type="password"  name="password"
                placeholder="password"
                class="form-control"/>
-        <input [(ngModel)]="password2" name="password2"
+        <input [(ngModel)]="password2" type="password" name="password2"
                placeholder="verify password"
                class="form-control"/>
         <button (click)="register(username, password, password2)"

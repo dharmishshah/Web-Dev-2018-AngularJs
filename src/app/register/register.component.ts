@@ -20,6 +20,10 @@ export class RegisterComponent implements OnInit {
   isUsernameError =false;
   isPasswordError = false;
   register(username, password, password2) {
+
+    this.isPasswordError = false
+    this.isUsernameError = false;
+
     console.log([username, password, password2]);
 
     if(password !== password2){
@@ -28,6 +32,7 @@ export class RegisterComponent implements OnInit {
     }
 
     this.service.findUserByUsername(username).then((response) => {
+
       if("true" === response){
         this.isUsernameError = true
         return
