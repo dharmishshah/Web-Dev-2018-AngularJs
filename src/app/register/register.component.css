@@ -17,3 +17,172 @@
 .registerForm .customError{
   margin-top: 10px;
 }
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align :right;
+}
+
+.red {
+  color: red;
+  text-align: center;
+}
+.green {
+  color: red;
+  text-align: center;
+}
+
+
+body{
+  background: #D3D5F0;
+  font-family: "Roboto", sans-serif;
+}
+
+.login-page{
+  width: 400px;
+  padding: 5% 0 0;
+  margin: auto;
+}
+
+.errorMsg{
+  background : pink;
+  font-family : "Roboto", sans-serif;
+  text-align : left;
+  font-color : red;
+  margin : 5px 0px 5px 0px;
+  padding : 5px;
+}
+
+.successMsg{
+  background : blue;
+  font-family : "Roboto", sans-serif;
+  text-align : left;
+  font-color : green;
+  margin : 5px 0px 5px 0px;
+  padding : 5px;
+}
+
+.form {
+  position: absolute;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 400px;
+  width: 700px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: left;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #FF3300;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.loginLabel label {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  padding: 0px;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 5px 0px -8px 0px;
+}
+
+.signupLabel label{
+
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  padding: 0px;
+  font-size: 14px;
+  cursor: pointer;
+  margin :5px 0px -8px 0px
+
+}
+
+.forgotPasswordLabel label{
+
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  padding: 0px;
+  font-size: 14px;
+  cursor: pointer;
+  margin :5px 0px -8px 0px;
+}
+
+.form .errorMsg{
+  background : pink;
+  font-family : "Roboto", sans-serif;
+  text-align : left;
+  font-color : red;
+  margin : 5px 0px 5px 0px;
+  padding : 10px;
+}
+
+.form .successMsg{
+  background : lightgreen;
+  font-family : "Roboto", sans-serif;
+  text-align : left;
+  font-color : green;
+  margin : 5px 0px 5px 0px;
+  padding : 10px;
+}
+
+.form p {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  padding: 0px;
+  font-size: 12px;
+  cursor: pointer;
+  margin : -9px 0px 4px 0px;
+  text-align : left;
+}
+
+
+.header-buttons button{
+  font-family: "Roboto", sans-serif;
+  background: #FF3300;
+  outline: 0;
+  font-size: 14px;
+  padding: 8px;
+  cursor: pointer;
+  color: #FFFFFF;
+  margin: 0 0 0 10px;
+  width :96px;
+  position:relative;
+  right: -839px;
+}
+

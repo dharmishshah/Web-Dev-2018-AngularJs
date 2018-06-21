@@ -4,23 +4,27 @@
 </div>
 
 <div class="container-fluid loginForm">
-  <h1>Login</h1>
 
-  <input [(ngModel)]="username"
-         placeholder="username"
-         class="form-control"/>
-  <input [(ngModel)]="password"
-         placeholder="password"
-         class="form-control"/>
-  <button (click)="login(username, password)"
-          class="btn btn-primary btn-block">
-    Login
-  </button>
+  <div class="login-page">
+  <div id="nav-login" >
+    <form class="form">
+      <input [(ngModel)]="username"
+             placeholder="username"
+             class="form-control"/>
+      <input [(ngModel)]="password"
+             placeholder="password"
+             class="form-control"/>
+      <button (click)="login(username, password)"
+              class="btn btn-primary btn-block">
+        Login
+      </button>
 
 
-  <div *ngIf="isError" class="customError alert alert-danger">
-    <strong>Error!</strong> Invalid Credentials.
+      <div *ngIf="isError" class="customError alert alert-danger">
+        <strong>Error!</strong> Invalid Credentials.
+      </div>
+    </form>
   </div>
-
+  </div>
 
 </div>
