@@ -8,10 +8,10 @@
   <div class="login-page">
   <div id="nav-login" >
     <form class="form">
-      <input [(ngModel)]="username"
+      <input [(ngModel)]="username" name="username"
              placeholder="username"
              class="form-control"/>
-      <input [(ngModel)]="password"
+      <input [(ngModel)]="password" name="password"
              placeholder="password"
              class="form-control"/>
       <button (click)="login(username, password)"
